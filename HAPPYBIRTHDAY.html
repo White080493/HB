@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安倩的生日祝贺卡</title>
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-30px);}
+            60% {transform: translateY(-15px);}
+        }
+
+        @keyframes flash {
+            0%, 50%, 100% {opacity: 1;}
+            25%, 75% {opacity: 0.5;}
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff66cc, 0 0 30px #ff66cc, 0 0 40px #ff66cc, 0 0 50px #ff66cc, 0 0 60px #ff66cc, 0 0 70px #ff66cc; }
+            50% { text-shadow: 0 0 20px #ff99cc, 0 0 30px #ff99cc, 0 0 40px #ff99cc, 0 0 50px #ff99cc, 0 0 60px #ff99cc, 0 0 70px #ff99cc, 0 0 80px #ff99cc; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .card {
+            background-color: #ffccff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            overflow: hidden;
+            animation: bounce 2s;
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            background-color: #ff99cc;
+            color: #fff;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            animation: flash 2s infinite;
+        }
+        .header span {
+            display: block;
+            animation: shimmer 2s infinite;
+        }
+        .content {
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .content img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+            animation: fadeIn 2s;
+        }
+        .date {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #888;
+        }
+        .footer {
+            background-color: #ff99cc;
+            padding: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+        .invite {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+        }
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall 10s linear infinite;
+        }
+        .inner-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall 10s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <span>🎉 生日快乐，安倩！ 🎉</span>
+            <span>🎉 Happy Birthday, Yun Ang Qian! 🎉</span>
+        </div>
+        <div class="content">
+            <img src="https://media.tenor.com/nCWPqFs5MqwAAAAM/anya-forger-jumpscare.gif" alt="Anya">
+            <div class="message">
+                亲爱的安倩：<br>
+                在这个特别的日子里，愿你像安妮亚一样，永远保持那份天真和快乐。愿你的每一天都像今天一样美好，充满欢笑和爱。<br>
+                <br>
+                生日快乐！
+            </div>
+            <div class="date">
+                2024年5月30日
+            </div>
+        </div>
+        <div class="footer">
+            To the lovely and charming An Qian,<br>
+            May all your dreams come true and your life be filled with happiness and joy!<br>
+            Happy Birthday!<br>
+            From: Yoshi
+        </div>
+        <div class="invite">
+            Let's be friends! 让我们一起交个朋友吧！
+        </div>
+    </div>
+
+    <script>
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 7 + 's';
+            document.body.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 10000);
+        }
+
+        function createInnerPetal() {
+            const innerPetal = document.createElement('div');
+            innerPetal.classList.add('inner-petal');
+            innerPetal.style.left = Math.random() * 100 + '%';
+            innerPetal.style.top = Math.random() * 100 + '%';
+            innerPetal.style.animationDuration = Math.random() * 3 + 7 + 's';
+            document.querySelector('.content').appendChild(innerPetal);
+
+            setTimeout(() => {
+                innerPetal.remove();
+            }, 10000);
+        }
+
+        setInterval(createPetal, 300);
+        setInterval(createInnerPetal, 500);
+    </script>
+</body>
+</html>
